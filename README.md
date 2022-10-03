@@ -1,4 +1,3 @@
-# NNComp
 # Real-Time Virtual Analog Modelling of an Audio Compressor Using Recurrent Neural Networks
 This is the code base for the undergraduate thesis project submitted to the University of Queensland by Michael Holmes.
 ## Introduction
