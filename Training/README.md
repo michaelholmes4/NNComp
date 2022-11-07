@@ -59,7 +59,7 @@ $ python3 training.py my_model.pth groovy_beats.wav
 ```
 
 ### Create C++ Model
-`create_headers.py` can be used to generate a C++ header file from a saved `.pth` model to use with the supplied `Plugin` module. 
+`create_headers.py` can be used to generate a C++ header file from a saved `.pth` model to use with the `Plugin` module in the root of this repo. 
 
 Parameters for `create_headers.py`
 
