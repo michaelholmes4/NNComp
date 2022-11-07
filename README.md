@@ -18,7 +18,7 @@ A demo audio plugin was also created using [iPlug2](https://github.com/iPlug2/iP
 This repo is split into 2 modules: `Training` and `Plugin`. Detailed usage instructions are available inside each module.
 
 ### Training
-Here PyTorch models are supplied for all network types along with a command line training script. A C++ header generation scrip is also supplied. A command line script to predict audio through a trained model is coming soon...
+Code for training and testing the PyTorch models from the thesis. A C++ header generation scrip is also supplied.
 
 ### Plugin
 The iPlug2 project file is supplied along with the C++ implementations for all the networks which works with the generated header files.  
