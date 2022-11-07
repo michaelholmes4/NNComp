@@ -19,13 +19,13 @@ def sorted_alphanumeric(data):
 
 class AudioDataSet(torch.utils.data.Dataset):
     """
-    Dataset class for audio samples. Import single audio file and target. Splits audio into samples of length sample_length. Leaves silence gap between samples val_split is the percentage of data to use for validation. If data=True, class represents the the training portion, false the class represents the validation portion.
+    Dataset class for audio samples. 
     """
     def __init__(self, input_path, sr=48000):
-        #self.input, self.sr = librosa.load(input_path, sr=None, mono = True, dtype=np.float32)
+
         self.input_path = input_path
         self.sr = sr
-        self.setup() #split input samples into training and validation sets
+        self.setup() 
         
     def __len__(self):
         """
