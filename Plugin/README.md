@@ -9,7 +9,7 @@ In this module is both code to load and use the C++ headers generated in `Traini
 
 ## Usage
 ### Use C++ implementation in own project
-An efficient C++ implementation is provided for LSTM, RNN and GRU networks. They can be run directly using the generated `.h` files from the `training` module. Alternatively, a model from `pretrained_models` can be used.
+An efficient C++ implementation is provided for LSTM, RNN and GRU networks. They can be run directly using the generated `.h` files from the `Training` module. Alternatively, a model from `pretrained_models` can be used.
 1. Include the model `.h` file in the project.
 2. Download the Eigen linear algebra library [here](https://eigen.tuxfamily.org/).
 3. Ensure the `Eigen/Dense` and `layers.h` are included in the project paths.
