@@ -22,7 +22,7 @@ A demo audio plugin was also created using [iPlug2](https://github.com/iPlug2/iP
 This repo is split into 2 modules: `Training` and `Plugin`. Detailed usage instructions are available inside each module.
 
 ### Training
-Code for training and testing the PyTorch models from the thesis. A C++ header generation scrip is also supplied.
+Code for training and testing the PyTorch models from the thesis. A script is supplied for converting these models into C++ headers to use with the `Plugin` module.
 
 ### Plugin
-The iPlug2 project file is supplied along with the C++ implementations for all the networks which works with the generated header files.  
+The iPlug2 project file is supplied along with quick C++ implementations that can be used in other projects.  
