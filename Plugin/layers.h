@@ -1,29 +1,12 @@
 #pragma once
-#include "Eigen/Dense"
-
-/*
-// ---- Fast Approximations ---
-double exp_fast(double x) {
-    auto numerator = 1680 + x * (840 + x * (180 + x * (20 + x)));
-    auto denominator = 1680 + x *(-840 + x * (180 + x * (-20 + x)));
-    return numerator / denominator;
-}
-
-double tanh_fast (const double x) {
-    auto x2 = x * x;
-    auto numerator = x * (135135 + x2 * (17325 + x2 * (378 + x2)));
-    auto denominator = 135135 + x2 * (62370 + x2 * (3150 + 28 * x2));
-    return numerator / denominator;
-}
- */
-
+#include "Eigen/Dense" //Requires the Eigen library. Found here: https://eigen.tuxfamily.org/
 
 /**
  * Sigmoid activation function
  */
-double Sigmoid(const double z) {
+template<typename T>
+double Sigmoid(T z) {
   return 1.0 / (1.0 + exp(-z));
-  //return 1.0 / (1.0 + exp_fast(-z)); //Fast Approx.
 }
 
 /**
@@ -39,14 +22,12 @@ public:
   
   void apply_layer(Eigen::Vector<T, d> x) {
     xt = x;
-    it = (Wii * xt + bii + Whi * htn1 + bhi).unaryExpr(std::ref(Sigmoid));
-    ft = (Wif * xt + bif + Whf * htn1 + bhf).unaryExpr(std::ref(Sigmoid));
+    it = (Wii * xt + bii + Whi * htn1 + bhi).unaryExpr(std::ref(Sigmoid<T>));
+    ft = (Wif * xt + bif + Whf * htn1 + bhf).unaryExpr(std::ref(Sigmoid<T>));
     gt = (Wig * xt + big + Whg * htn1 + bhg).array().tanh();
-    //gt = (Wig * xt + big + Whg * htn1 + bhg).unaryExpr(std::ref(tanh_fast)); //Fast Approx.
-    ot = (Wio * xt + bio + Who * htn1 + bho).unaryExpr(std::ref(Sigmoid));
+    ot = (Wio * xt + bio + Who * htn1 + bho).unaryExpr(std::ref(Sigmoid<T>));
     ct = ft.cwiseProduct(ctn1) + it.cwiseProduct(gt);
     ht = ct.array().tanh();
-    //ht = ct.unaryExpr(std::ref(tanh_fast)); //Fast Approx.
     ht = ot.cwiseProduct(ht);
     htn1 = ht;
     ctn1 = ct;
@@ -54,14 +35,12 @@ public:
   
   void apply_layer(T x) {
     xt = xt.Constant(x);
-    it = (Wii * xt + bii + Whi * htn1 + bhi).unaryExpr(std::ref(Sigmoid));
-    ft = (Wif * xt + bif + Whf * htn1 + bhf).unaryExpr(std::ref(Sigmoid));
+    it = (Wii * xt + bii + Whi * htn1 + bhi).unaryExpr(std::ref(Sigmoid<T>));
+    ft = (Wif * xt + bif + Whf * htn1 + bhf).unaryExpr(std::ref(Sigmoid<T>));
     gt = (Wig * xt + big + Whg * htn1 + bhg).array().tanh();
-    //gt = (Wig * xt + big + Whg * htn1 + bhg).unaryExpr(std::ref(tanh_fast)); //Fast Approx.
-    ot = (Wio * xt + bio + Who * htn1 + bho).unaryExpr(std::ref(Sigmoid));
+    ot = (Wio * xt + bio + Who * htn1 + bho).unaryExpr(std::ref(Sigmoid<T>));
     ct = ft.cwiseProduct(ctn1) + it.cwiseProduct(gt);
     ht = ct.array().tanh();
-    //ht = ct.unaryExpr(std::ref(tanh_fast)); //Fast Approx.
     ht = ot.cwiseProduct(ht);
     htn1 = ht;
     ctn1 = ct;
@@ -101,7 +80,7 @@ public:
 };
 
 /**
- * Defines a single lstm layer.
+ * Defines a single gru layer.
  * T - Type
  * h - hidden size
  * d - input size
@@ -113,20 +92,18 @@ public:
   
   void apply_layer(Eigen::Vector<T, d> x) {
     xt = x;
-    rt = (Wir * xt + bir + Whr * htn1 + bhr).unaryExpr(std::ref(Sigmoid));
-    zt = (Wiz * xt + biz + Whz * htn1 + bhz).unaryExpr(std::ref(Sigmoid));
+    rt = (Wir * xt + bir + Whr * htn1 + bhr).unaryExpr(std::ref(Sigmoid<T>));
+    zt = (Wiz * xt + biz + Whz * htn1 + bhz).unaryExpr(std::ref(Sigmoid<T>));
     nt = (Win * xt + bin + rt.cwiseProduct(Whn * htn1 + bhn)).array().tanh();
-    //nt = (Win * xt + bin + rt.cwiseProduct(Whn * htn1 + bhn)).unaryExpr(std::ref(tanh_fast)); //Fast Approx.
     ht = (ht.Constant(1) - zt).cwiseProduct(nt) + zt.cwiseProduct(htn1);
     htn1 = ht;
   }
   
   void apply_layer(T x) {
     xt = xt.Constant(x);
-    rt = (Wir * xt + bir + Whr * htn1 + bhr).unaryExpr(std::ref(Sigmoid));
-    zt = (Wiz * xt + biz + Whz * htn1 + bhz).unaryExpr(std::ref(Sigmoid));
+    rt = (Wir * xt + bir + Whr * htn1 + bhr).unaryExpr(std::ref(Sigmoid<T>));
+    zt = (Wiz * xt + biz + Whz * htn1 + bhz).unaryExpr(std::ref(Sigmoid<T>));
     nt = (Win * xt + bin + rt.cwiseProduct(Whn * htn1 + bhn)).array().tanh();
-    //nt = (Win * xt + bin + rt.cwiseProduct(Whn * htn1 + bhn)).unaryExpr(std::ref(tanh_fast)); //Fast Approx.
     ht = (ht.Constant(1) - zt).cwiseProduct(nt) + zt.cwiseProduct(htn1);
     htn1 = ht;
   }
@@ -159,7 +136,7 @@ public:
 };
 
 /**
- * Defines a single lstm layer.
+ * Defines a single rnn layer.
  * T - Type
  * h - hidden size
  * d - input size
@@ -172,14 +149,12 @@ public:
   void apply_layer(Eigen::Vector<T, d> x) {
     xt = x;
     ht = (Wih * xt + bih + Whh * htn1 + bhh).array().tanh();
-    //ht = (Wih * xt + bih + Whh * htn1 + bhh).unaryExpr(std::ref(tanh_fast)); //Fast Approx.
     htn1 = ht;
   }
   
   void apply_layer(T x) {
     xt = xt.Constant(x);
     ht = (Wih * xt + bih + Whh * htn1 + bhh).array().tanh();
-    //ht = (Wih * xt + bih + Whh * htn1 + bhh).unaryExpr(std::ref(tanh_fast)); //Fast Approx.
     htn1 = ht;
   }
   Eigen::Matrix<T, h, d> Wih;
@@ -203,7 +178,6 @@ public:
   FccLayer(){}
   T apply_layer(Eigen::Vector<T, h> x) {
     return (x.transpose() * A + b).array().tanh()(0);
-    //return (x.transpose() * A + b).array().unaryExpr(std::ref(tanh_fast))(0); //Fast Approx.
   }
   
   Eigen::Matrix<T, h, d> A;
