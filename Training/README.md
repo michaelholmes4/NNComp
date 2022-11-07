@@ -5,7 +5,7 @@ This module can be used to train RNN, GRU and LSTM networks on audio datasets.
 * `training.py` - Command line utility to train new models.
 * `create_headers.py` - Create C++ header file from trained model `.pth` file.
 * `model.py` - All model, dataset and training classes
-* `create_all_headers.sh` - Shell script to create headers for all model in local directory
+* `create_all_headers.sh` - Shell script to create headers for all models in local directory
 
 ## Setup
 1. Clone this repo and cd to the `Training` folder
