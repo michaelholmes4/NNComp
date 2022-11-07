@@ -23,7 +23,7 @@ args = parser.parse_args()
 if args.path:
     path = args.path 
 else:
-    path = '../DatasetCreation/GeneratedDatasets/out/'
+    path = 'dataset/'
 if args.epochs:
     epochs = args.epochs
 else:
