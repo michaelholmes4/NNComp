@@ -8,6 +8,7 @@ This module can be used to train RNN, GRU and LSTM networks on audio datasets.
 * `create_all_headers.sh` - Shell script to create headers for all models in local directory
 
 ## Setup
+To train models a GPU with minimum 12GB of memory is required.
 1. Clone this repo and cd to the `Training` folder
 2. Setup a new conda environment. An `environment.yml` file is supplied with required dependencies.
 
