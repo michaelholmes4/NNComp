@@ -11,7 +11,7 @@ This repo can be used to train RNN, LSTM and GRU neural networks and convert the
 
 The trained models from the thesis project can be downloaded [here](https://hcloudh.com/nextcloud/s/9rWEe6EHQq4x4DS/download/All_Models.zip).
 
-An audio plugin was also created using [iPlug2](https://github.com/iPlug2/iPlug2). The project folder for this is also supplied. Alternatively, pre-built binaries for the plugin can be downloaded [here](https://hcloudh.com/nextcloud/s/mxBCBoyYKQzmjcL).
+A demo audio plugin was also created using [iPlug2](https://github.com/iPlug2/iPlug2). The project folder for this is also supplied. Alternatively, pre-built binaries for the plugin can be downloaded [here](https://hcloudh.com/nextcloud/s/mxBCBoyYKQzmjcL).
 
 
 ## Contents
