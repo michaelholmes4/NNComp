@@ -19,7 +19,7 @@ This module can be used to train RNN, GRU and LSTM networks on audio datasets.
 
 ## Usage
 ### Train a new model
-1. Create a folder with training dataset. Folder must contain mono `.wav` files all with the same length. Files must be named `input****.wav` and `target****.wav` where `****` corresponds to matching input target pairs indices.
+1. Create a folder with training dataset. Folder must contain mono `.wav` files all with the same length with 48kHz sample rate. Files must be named `input****.wav` and `target****.wav` where `****` corresponds to matching input target pairs indices.
 2. Run the train script using the cmd line arguments presented below.
 3. Tensorboard is supported and training is saved to `./runs`. You can launch tensorboard using: `tensorboard --logdir ./`
 4. Once training has finished, the model will be saved as `.pth` in the specified directory. Additionally every epoch an `autosave.pth` file is also created.
