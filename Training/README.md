@@ -56,7 +56,7 @@ Apply a trained `.pth` model to an audio file.
 
 Eg:
 ```bash
-$ python3 training.py my_model.pth groovy_beats.wav
+$ python3 predict.py my_model.pth groovy_beats.wav
 ```
 
 ### Create C++ Model
