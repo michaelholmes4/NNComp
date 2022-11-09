@@ -1,6 +1,6 @@
 # Real-Time Virtual Analog Modelling of an Audio Compressor Using Recurrent Neural Networks
 <p align="center">
-  <img src="https://hcloudh.com/nextcloud/s/nbZBGJ9C95BffFn/download/logo.png" width="600">
+  <img src="https://user-images.githubusercontent.com/99728921/200828493-54f9ee7d-5127-4c0e-a326-13283a6a058b.png" width="600">
 </p>
 
 This is the code base for the Honours thesis project submitted to the University of Queensland by Michael Holmes 2022.
