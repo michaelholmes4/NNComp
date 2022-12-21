@@ -3,7 +3,7 @@
   <img src="https://user-images.githubusercontent.com/99728921/200828493-54f9ee7d-5127-4c0e-a326-13283a6a058b.png" width="600">
 </p>
 
-This is the code base for the Honours [thesis](https://github.com/michaelholmes4/NNComp/files/10250577/Thesis.pdf) project submitted to the University of Queensland by Michael Holmes 2022.
+This is the code base for the Honours [thesis](https://files.hcloudh.com/s/zrpJqozJeN6Y25c) project submitted to the University of Queensland by Michael Holmes 2022.
 
 ### Acknowledgements
 The following papers were highly influential in guiding this project:
