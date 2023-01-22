@@ -25,4 +25,4 @@ The iPlug2 library can be a bit tricky to build. These are the rough steps that 
 4. Open the `NNCompressor.xcworkspace` in Xcode or `NNCompressor.code-workspace` in Visual Studio in the project folder. 
 5. Build the plugin. There may be additional steps required as documented in the iPlug2 documentation, such as downloading pre-built [dependencies](https://github.com/iPlug2/iPlug2/tree/master/Dependencies).
 
-Pre-built versions of the plugin are available [here](https://hcloudh.com/nextcloud/s/mxBCBoyYKQzmjcL).
+Pre-built versions of the plugin are available [here](https://files.hcloudh.com/s/NiYCKSnC34xxbSW).
