@@ -39,7 +39,7 @@ Eg:
 ```bash
 $ python3 training.py lstm-32-1
 ```
-Alternatively, download pre-trained models from the thesis [here](https://hcloudh.com/nextcloud/s/9rWEe6EHQq4x4DS/download/All_Models.zip).
+Alternatively, download pre-trained models from the thesis [here](https://files.hcloudh.com/s/TBQ8tCK8wmXdoKB).
 
 ### Predict Audio
 Apply a trained `.pth` model to an audio file.
