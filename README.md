@@ -13,9 +13,9 @@ The following papers were highly influential in guiding this project:
 ## Introduction
 This repo can be used to train RNN, LSTM and GRU neural networks and convert these networks into efficient C++ code for use in audio plugins. 
 
-The trained models from the thesis project can be downloaded [here](https://hcloudh.com/nextcloud/s/9rWEe6EHQq4x4DS/download/All_Models.zip).
+The trained models from the thesis project can be downloaded [here](https://files.hcloudh.com/s/qcNFYJYneXgY8X5).
 
-A demo audio plugin was also created using [iPlug2](https://github.com/iPlug2/iPlug2) and can be downloaded [here](https://hcloudh.com/nextcloud/s/mxBCBoyYKQzmjcL).
+A demo audio plugin was also created using [iPlug2](https://github.com/iPlug2/iPlug2) and can be downloaded [here](https://files.hcloudh.com/s/CJ9CmiS6KAZKpCS).
 
 
 ## Contents
