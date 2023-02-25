@@ -1,0 +1,3 @@
+[submodule "Plugin/iPlug2"]
+	path = Plugin/iPlug2
+	url = https://github.com/michaelholmes4/iPlug2
