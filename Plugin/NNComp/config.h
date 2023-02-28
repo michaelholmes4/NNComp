@@ -24,8 +24,8 @@
 #define PLUG_DOES_MPE 0
 #define PLUG_DOES_STATE_CHUNKS 0
 #define PLUG_HAS_UI 1
-#define PLUG_WIDTH 600
-#define PLUG_HEIGHT 300
+#define PLUG_WIDTH 836
+#define PLUG_HEIGHT 666
 #define PLUG_FPS 60
 #define PLUG_SHARED_RESOURCES 0
 #define PLUG_HOST_RESIZE 0
@@ -52,3 +52,6 @@
 #define APP_SIGNAL_VECTOR_SIZE 64
 
 #define ROBOTO_FN "Roboto-Regular.ttf"
+#define INTER_FN "Inter-Regular.ttf"
+#define LOGO_SVG "Logo.svg"
+#define LOGO_PNG "Logo.png"
