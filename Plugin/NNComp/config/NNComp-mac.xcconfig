@@ -41,7 +41,7 @@ RELEASE_OPTIMIZE = 3 //0,1,2,3,s
 
 //------------------------------
 // DEBUG BUILD OPTIONS
-DEBUG_OPTIMIZE = 0 //0,1,2,3,s
+DEBUG_OPTIMIZE = 3 //0,1,2,3,s
 
 //------------------------------
 // MISCELLANEOUS COMPILER OPTIONS

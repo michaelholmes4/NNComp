@@ -8,8 +8,8 @@
 NNComp::NNComp(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPresets))
 {
-  GetParam(kGain)->InitDouble("InGain",0, -40., 40., 0.1, "");
-  GetParam(kOutGain)->InitDouble("OutGain",0.0, -40., 40., 0.1, "");
+  GetParam(kGain)->InitDouble("InGain",-30, -30., 30., 0.1, "");
+  GetParam(kOutGain)->InitDouble("OutGain",30., -30., 30., 0.1, "");
   GetParam(kModel)->InitEnum("ModelSelect", 0, 26, "", IParam::kFlagsNone, "",
                              "gru-32-1",
                              "gru-16-2",
@@ -52,6 +52,7 @@ NNComp::NNComp(const InstanceInfo& info)
     pGraphics->AttachPanelBackground(COLOR_WHITE);
     pGraphics->LoadFont("Inter-Regular", INTER_FN);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
+    pGraphics->EnableMouseOver(true);
     
     //Bounds
     const IRECT b = pGraphics->GetBounds();
@@ -64,6 +65,8 @@ NNComp::NNComp(const InstanceInfo& info)
     const IRECT bOutputMeter = bOutputMeterArea.GetFromRight(52).GetFromTop(186);
     const IRECT bInputKnob = bInputMeterArea.GetReducedFromTop(201).GetReducedFromLeft(8).GetReducedFromRight(8);
     const IRECT bOutputKnob = bOutputMeterArea.GetReducedFromTop(201).GetReducedFromLeft(8).GetReducedFromRight(8);
+    const IRECT bDropDown = b.GetInsideSize(258, 69, 100, 19);
+    const IRECT bGRMeter = b.GetInsideSize(576, 70, 201, 15);
     
     //Controls
     pGraphics->AttachControl(new BackgroundControl(b));
@@ -71,6 +74,11 @@ NNComp::NNComp(const InstanceInfo& info)
     pGraphics->AttachControl(new MeterControl(bOutputMeter), kCtrlOutMeter);
     pGraphics->AttachControl(new KnobControl(bInputKnob, kGain, "Input"));
     pGraphics->AttachControl(new KnobControl(bOutputKnob, kOutGain, "Output"));
+    pGraphics->AttachControl(new NetworkControl<32, 4>(bMainPanel, kModel));
+    pGraphics->AttachControl(new DropDownControl(bDropDown, kModel));
+    pGraphics->AttachControl(new ITextControl(bDropDown.GetHShifted(-130.).GetHPadded(25.), "Pick your network architecture: ",IText(12., IColor(255,203,201,201), "Inter-Regular")));
+    pGraphics->AttachControl(new GrMeterControl(bGRMeter), kCtrlGrMeter);
+    pGraphics->AttachControl(new ITextControl(bGRMeter.GetHShifted(-150.), "Gain Reduction: ",IText(12., IColor(255,203,201,201), "Inter-Regular")));
     
   };
 #endif
@@ -82,13 +90,14 @@ void NNComp::OnIdle()
 {
   inSender.TransmitData(*this);
   outSender.TransmitData(*this);
-  //grSender.TransmitData(*this);
+  grSender.TransmitData(*this);
 }
 
 void NNComp::OnReset()
 {
   inSender.Reset(GetSampleRate());
   outSender.Reset(GetSampleRate());
+  grSender.Reset(GetSampleRate());
 }
 
 void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
@@ -97,39 +106,48 @@ void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
   const double outGain = DBToAmp(GetParam(kOutGain)->Value());
   const int nChans = NOutChansConnected();
   const int model = GetParam(kModel)->Int();
-
-
+  
+  //GR buffer
+  sample **gr;
+  gr = new sample*[1];
+  for(int i = 0; i < nChans; i++)
+  {
+    gr[i] = new sample[nFrames];
+  }
+  
   //Iterate over buffer
   for (int s = 0; s < nFrames; s++) {
+    //Set GR to 0
+    gr[0][s] = 0.0;
+    
     for (int c = 0; c < nChans; c++) {
-      grBuffer = 0.0;
       //apply NN
       inputs[c][s] *= inGain;
       if(c == 0) {
-        //nnL.ProcessSample(&inputs[c][s], &outputs[c][s], model);
+        nnL.ProcessSample(&inputs[c][s], &outputs[c][s], model);
       } else if(c == 1) {
-        //nnR.ProcessSample(&inputs[c][s], &outputs[c][s], model);
+        nnR.ProcessSample(&inputs[c][s], &outputs[c][s], model);
       }
       
-      //GR Meter
-      grBuffer += abs(inputs[c][s]) - abs(outputs[c][s]);
+      //Set gr value
+      gr[c][s] = std::abs(inputs[c][s]) - std::abs(outputs[c][s]);
       
       //Apply out gain
       outputs[c][s] *= outGain;
-    }
-    
-    grBuffer /= nChans;
-    if(grBuffer > grPrevious) {
-      grPrevious = grBuffer;
-    } else {
-      grPrevious -= 1 / (1 * GetSampleRate());
+      //outputs[c][s] = inputs[c][s] * outGain;
     }
   }
   
   //Send values to meters
-  grAmount = 1 - grPrevious;
   inSender.ProcessBlock(inputs, nFrames, kCtrlInMeter);
   outSender.ProcessBlock(outputs, nFrames, kCtrlOutMeter);
-  //grSender.PushData({kCtrlGrMeter, {grAmount}});
+  grSender.ProcessBlock(gr, nFrames, kCtrlGrMeter);
+  
+  //free gr buffer
+  for(int i = 0; i < nChans; i++)
+  {
+    delete [] gr[i];
+  }
+  delete [] gr;
 }
 #endif

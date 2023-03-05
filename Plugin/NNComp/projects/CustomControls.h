@@ -384,7 +384,7 @@ public:
   void DrawWidget(IGraphics& g) override
   {
     //Draw fill
-    if (!g.CheckLayer(mLayerBg) || mMouseIsOver)
+    if (!g.CheckLayer(mLayerBg))
     {
       g.StartLayer(this, mRECT);
       g.PathCircle(mWidgetBounds.L + mWidgetBounds.W()/2, mWidgetBounds.T + mWidgetBounds.W()/2, mWidgetBounds.W()/2);
@@ -395,9 +395,8 @@ public:
         glow.AddStop(IColor(255,47,54,82), 1.0);
       } else
       {
-        glow.AddStop(COLOR_RED, 1.0);
+        glow.AddStop(IColor(255,67,74,102), 1.0);
       }
-      
       g.PathFill(glow);
       mLayerBg = g.EndLayer();
       g.ApplyLayerDropShadow(mLayerBg, IShadow(COLOR_BLACK, 4., 4., 4., 0.25));
@@ -420,7 +419,24 @@ public:
     const float angle = mAngle1 + (static_cast<float>(GetValue()) * (mAngle2 - mAngle1));
     
     g.DrawRadialLine(IColor(255,208,208,208), mWidgetBounds.L + mWidgetBounds.W()/2, mWidgetBounds.T + mWidgetBounds.W()/2, angle, 10., 18., 0 , 2.);
-    
+  }
+  
+  void OnMouseOver(float x, float y, const IMouseMod& mod) override
+  {
+    bool prev = mMouseIsOver;
+    mMouseIsOver = true;
+    if (prev == false)
+      SetDirty(false);
+      mLayerBg->Invalidate();
+  }
+  
+  void OnMouseOut() override
+  {
+    bool prev = mMouseIsOver;
+    mMouseIsOver = false;
+    if (prev == true)
+      SetDirty(false);
+      mLayerBg->Invalidate();
   }
   
 private:
@@ -428,6 +444,193 @@ private:
   ILayerPtr mLayerRing;
 };
 
+
+class DropDownControl : public ICaptionControl
+{
+public:
+  DropDownControl(const IRECT& bounds, int paramIdx)
+  : ICaptionControl(bounds.GetPadded(20.), paramIdx, IText(12., COLOR_WHITE.WithOpacity(0.4), "Inter-Regular"))
+  {
+    mButton = mRECT.GetPadded(-20.);
+  }
+  
+  void Draw(IGraphics& g) override
+  {
+    const IParam* pParam = GetParam();
+    if(pParam)
+    {
+      pParam->GetDisplay(mStr);
+    }
+    
+    if(!g.CheckLayer(mLayer))
+    {
+      g.StartLayer(this, mRECT);
+      IPattern grad = IPattern::CreateLinearGradient(mButton.L, mButton.T, mButton.R, mButton.T);
+      if(!mMouseIsOver)
+      {
+        grad.AddStop(IColor(51, 138, 248, 255), 0.0);
+        grad.AddStop(IColor(51, 107, 149, 255), 0.5);
+        grad.AddStop(IColor(51, 213, 124, 255), 1.0);
+      } else {
+        grad.AddStop(IColor(100, 138, 248, 255), 0.0);
+        grad.AddStop(IColor(100, 107, 149, 255), 0.5);
+        grad.AddStop(IColor(100, 213, 124, 255), 1.0);
+      }
+      
+      g.PathRoundRect(mButton, 6.);
+      g.PathFill(grad);
+      mLayer = g.EndLayer();
+      g.ApplyLayerDropShadow(mLayer, mShadow);
+    }
+    g.DrawLayer(mLayer);
+    IRECT tri = mButton.GetFromLeft(mButton.H()).GetCentredInside(6).GetHShifted(3.);
+    g.FillTriangle(COLOR_WHITE.WithOpacity(0.2), tri.L, tri.T, tri.R, tri.T, tri.MW(), tri.B);
+    
+    ITextControl::Draw(g);
+  }
+  
+  void OnMouseDown(float x, float y, const IMouseMod& mod) override
+  {
+    if (mod.L || mod.R)
+    {
+      if(mButton.Contains(x, y))
+      {
+        PromptUserInput(mButton);
+      }
+    }
+  }
+  
+  void OnMouseOver(float x, float y, const IMouseMod& mod) override
+  {
+    if(mButton.Contains(x, y))
+    {
+      bool prev = mMouseIsOver;
+      mMouseIsOver = true;
+      if (prev == false)
+        SetDirty(false);
+        mLayer->Invalidate();
+    }
+  }
+  
+  void OnMouseOut() override
+  {
+    bool prev = mMouseIsOver;
+    mMouseIsOver = false;
+    if (prev == true)
+      SetDirty(false);
+      mLayer->Invalidate();
+  }
+  
+private:
+  IRECT mButton;
+  ILayerPtr mLayer;
+  IShadow mShadow = IShadow(COLOR_BLACK, 4.0, 4.0, 4.0, 100.f, true);
+};
+
+class GrMeterControl : public IControl
+{
+public:
+  GrMeterControl(IRECT bounds)
+  : IControl(bounds)
+  , mBounds(bounds)
+  {
+    CreateAssets();
+    mFmtString.Set("%.1f");
+  }
+  
+  void Draw(IGraphics& g) override
+  {
+    //Draw background
+    if (!g.CheckLayer(mLayerBg))
+    {
+      g.StartLayer(this, mRECT);
+      IPattern gradient = IPattern::CreateLinearGradient(mChannelArea.R, mChannelArea.T, mChannelArea.L, mChannelArea.T);
+      gradient.AddStop(IColor(25, 138, 248, 255), 0.0);
+      gradient.AddStop(IColor(25, 107, 149, 255), 0.5);
+      gradient.AddStop(IColor(25, 213, 124, 255), 1.0);
+      g.PathRoundRect(mChannelArea, 6.);
+      g.PathFill(gradient);
+      mLayerBg = g.EndLayer();
+    }
+    g.DrawLayer(mLayerBg);
+    
+    //Draw Tracks
+    IPattern gradient = IPattern::CreateLinearGradient(mChannelArea.R, mChannelArea.T, mChannelArea.L, mChannelArea.R);
+    gradient.AddStop(IColor(255, 138, 248, 255), 0.0);
+    gradient.AddStop(IColor(255, 107, 149, 255), 0.5);
+    gradient.AddStop(IColor(255, 213, 124, 255), 1.0);
+    if(mValues[0] > 0.01)
+    {
+      if(mValues[0] < 1.0)
+      {
+        g.PathRoundRect(mChannelArea.GetFromRight(mValues[0] * mChannelArea.W()), 6.);
+      } else
+      {
+        g.PathRoundRect(mChannelArea.GetFromRight(mChannelArea.W()), 6.);
+      }
+    }
+    g.PathFill(gradient);
+    
+    //Draw Values
+    g.DrawText(tValue, mPeakValues[0].Get(), mValuesArea);
+  }
+  
+  void OnMsgFromDelegate(int msgTag, int dataSize, const void* pData) override
+  {
+    if (!IsDisabled() && msgTag == ISender<>::kUpdateMessage)
+    {
+      IByteStream stream(pData, dataSize);
+
+      int pos = 0;
+      ISenderData<2, std::pair<float, float>> d;
+      pos = stream.Get(&d, pos);
+      
+      const auto lowRangeDB = -40.;
+      const auto highRangeDB = -20.;
+
+      double lowPointAbs = std::fabs(lowRangeDB);
+      double rangeDB = std::fabs(highRangeDB - lowRangeDB);
+      
+      for (auto c = d.chanOffset; c < (d.chanOffset + d.nChans); c++)
+      {
+        double value = AmpToDB(static_cast<double>(std::get<0>(d.vals[c])));
+        double linearPos = (value + lowPointAbs)/rangeDB;
+        
+        mValues[c] = static_cast<float>(linearPos);
+        
+        double peakValue = AmpToDB(static_cast<double>(std::get<1>(d.vals[c])));
+        if(peakValue > lowRangeDB)
+        {
+          mPeakValues[c].SetFormatted(256, mFmtString.Get(), lowRangeDB - peakValue);
+        } else {
+          mPeakValues[c].Set("0.0");
+        }
+      }
+      
+      IControl::SetDirty(false);
+    }
+  }
+  
+  void CreateAssets()
+  {
+    mValuesArea = mRECT.GetFromRight(30.);
+    mChannelArea = mRECT.GetFromLeft(170.);
+  }
+  
+private:
+  IRECT mBounds;
+  IRECT mChannelArea;
+  IRECT mValuesArea;
+  ILayerPtr mLayerBg;
+  IPattern gradient = IPattern::CreateLinearGradient(0.,0.,0.,0);
+  
+  std::array<float, 2> mValues;
+  std::array<WDL_String, 2> mPeakValues;
+  WDL_String mFmtString;
+  
+  IColor cText = IColor(255,156,156,156);
+  IText tValue = IText(12., cText, "Inter-Regular");
+};
 
 END_IGRAPHICS_NAMESPACE
 END_IPLUG_NAMESPACE

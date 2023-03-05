@@ -4,7 +4,8 @@
 #include "IControls.h"
 #include "IPlugPaths.h"
 #include "CustomControls.h"
-//#include "dsp.h"
+#include "NetworkControl.h"
+#include "dsp.h"
 
 const int kNumPresets = 1;
 
@@ -42,12 +43,9 @@ public:
 private:
   MeterSender<2> inSender {5., 0., 0.3, 0.5};
   MeterSender<2> outSender {5., 0., 0.3, 0.5};
-  //ISender<1> grSender;
+  MeterSender<2> grSender {5., 0.1, 0.5, 0.5};
   
-  //NN<sample> nnL;
-  //NN<sample> nnR;
-  float grBuffer;
-  float grPrevious;
-  float grAmount;
+  NN<sample> nnL;
+  NN<sample> nnR;
 #endif
 };
