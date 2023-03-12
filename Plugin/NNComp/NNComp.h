@@ -3,7 +3,10 @@
 #include "IPlug_include_in_plug_hdr.h"
 #include "IControls.h"
 #include "IPlugPaths.h"
+#include "CustomControls.h"
+#include "NetworkControl.h"
 #include "dsp.h"
+#include "WeightSender.h"
 
 const int kNumPresets = 1;
 
@@ -21,6 +24,7 @@ enum EControlTags
   kCtrlInMeter = 0,
   kCtrlOutMeter,
   kCtrlGrMeter,
+  kCtrlNN,
   kCtrlTags
 };
 
@@ -39,14 +43,12 @@ public:
   void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
   
 private:
-  IPeakAvgSender<2> inSender;
-  IPeakAvgSender<2> outSender;
-  ISender<1> grSender;
+  MeterSender<2> inSender {5., 0., 0.3, 0.5};
+  MeterSender<2> outSender {5., 0., 0.3, 0.5};
+  MeterSender<2> grSender {5., 0.1, 0.5, 0.5};
+  WeightSender<32, 4> nnSender;
   
   NN<sample> nnL;
   NN<sample> nnR;
-  float grBuffer;
-  float grPrevious;
-  float grAmount;
 #endif
 };

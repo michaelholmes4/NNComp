@@ -202,11 +202,15 @@ class FccLayer {
 public:
   FccLayer(){}
   T apply_layer(Eigen::Vector<T, h> x) {
-    return (x.transpose() * A + b).array().tanh()(0);
+    xt = x;
+    y = (xt.transpose() * A + b).array().tanh()(0);
+    return y;
     //return (x.transpose() * A + b).array().unaryExpr(std::ref(tanh_fast))(0); //Fast Approx.
   }
   
   Eigen::Matrix<T, h, d> A;
   Eigen::Vector<T, d> b;
+  Eigen::Vector<T, h> xt;
+  T y;
   
 };

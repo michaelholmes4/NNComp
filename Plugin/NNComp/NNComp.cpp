@@ -4,11 +4,12 @@
 #include "IPlugPaths.h"
 #include "IVMeterControl.h"
 
+
 NNComp::NNComp(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPresets))
 {
-  GetParam(kGain)->InitDouble("InGain",-30.0, -40., 40., 0.001, "dB");
-  GetParam(kOutGain)->InitDouble("OutGain",30.0, -40., 40., 0.001, "dB");
+  GetParam(kGain)->InitDouble("InGain",-30, -30., 30., 0.1, "");
+  GetParam(kOutGain)->InitDouble("OutGain",30., -30., 30., 0.1, "");
   GetParam(kModel)->InitEnum("ModelSelect", 0, 26, "", IParam::kFlagsNone, "",
                              "gru-32-1",
                              "gru-16-2",
@@ -46,35 +47,39 @@ NNComp::NNComp(const InstanceInfo& info)
   };
   
   mLayoutFunc = [&](IGraphics* pGraphics) {
+    //Resources and misc
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
     pGraphics->AttachPanelBackground(COLOR_WHITE);
+    pGraphics->LoadFont("Inter-Regular", INTER_FN);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
+    pGraphics->EnableMouseOver(true);
     
     //Bounds
     const IRECT b = pGraphics->GetBounds();
-    const IRECT bTitle = b.GetFromTop(20.);
-    const IRECT bFooter = b.GetFromBottom(10);
-    const IRECT bPlugin = b.GetReducedFromBottom(10).GetFromBottom(PLUG_HEIGHT - 10 - 20);
-    const IRECT bInMeter = bPlugin.GetFromLeft(30).GetHShifted(10);
-    const IRECT bOutMeter = bPlugin.GetFromRight(30).GetHShifted(-10);
-    const IRECT bInKnob = bInMeter.GetCentredInside(80).GetHShifted(50);
-    const IRECT bOutKnob = bOutMeter.GetCentredInside(80).GetHShifted(-50);
-    const IRECT bModelSelect = bPlugin.GetCentredInside(100).GetReducedFromTop(30).GetReducedFromBottom(30);
-    const IRECT bGrMeter = bPlugin.GetCentredInside(100).GetReducedFromTop(40).GetReducedFromBottom(40).GetVShifted(50);
-    const IRECT bBypass = bModelSelect.GetVShifted(-60).GetHPadded(-30);
+    const IRECT bLeftPanel = b.GetInsideSize(7, 224, 70, 294);
+    const IRECT bRightPanel = b.GetInsideSize(759, 224, 70, 294);
+    const IRECT bMainPanel = b.GetInsideSize(87, 97, 662, 559);
+    const IRECT bInputMeterArea = bLeftPanel.GetCentredInside(IRECT(0,0,52,275));
+    const IRECT bInputMeter = bInputMeterArea.GetFromLeft(52).GetFromTop(186);
+    const IRECT bOutputMeterArea = bRightPanel.GetCentredInside(IRECT(0,0,52,275));
+    const IRECT bOutputMeter = bOutputMeterArea.GetFromRight(52).GetFromTop(186);
+    const IRECT bInputKnob = bInputMeterArea.GetReducedFromTop(201).GetReducedFromLeft(8).GetReducedFromRight(8);
+    const IRECT bOutputKnob = bOutputMeterArea.GetReducedFromTop(201).GetReducedFromLeft(8).GetReducedFromRight(8);
+    const IRECT bDropDown = b.GetInsideSize(258, 69, 100, 19);
+    const IRECT bGRMeter = b.GetInsideSize(576, 70, 201, 15);
     
-    //Elements
-    pGraphics->AttachControl(new ITextControl(bTitle, "Real-Time VA Modelling of an Audio Compressor Using Deep Neural Networks", IText(20)));
-    pGraphics->AttachControl(new IVPeakAvgMeterControl<2>(bInMeter, "InMeter", DEFAULT_STYLE.WithShowLabel(false).WithShowValue(true)), kCtrlInMeter);
-    pGraphics->AttachControl(new IVPeakAvgMeterControl<2>(bOutMeter, "OutMeter", DEFAULT_STYLE.WithShowLabel(false).WithShowValue(true)), kCtrlOutMeter);
-    pGraphics->AttachControl(new IVKnobControl(bInKnob, kGain, "Input"));
-    pGraphics->AttachControl(new IVKnobControl(bOutKnob, kOutGain, "Output"));
-    pGraphics->AttachControl(new ITextControl(bFooter, "Michael Holmes 2022", IText(10)));
-    pGraphics->AttachControl(new ICaptionControl(bModelSelect, kModel));
-    pGraphics->AttachControl(new IVLabelControl(bModelSelect.GetVShifted(-30).GetHPadded(40),"Neural Network Architecture", DEFAULT_STYLE.WithDrawFrame(false).WithDrawShadows(false)));
-    pGraphics->AttachControl(new IVMeterControl<1>(bGrMeter, "Gain Reduction", DEFAULT_STYLE.WithShowValue(false).WithShowLabel(false), EDirection::Horizontal, {""}, 0, IVMeterControl<>::EResponse::Linear, -20., 0.), kCtrlGrMeter);
-    pGraphics->AttachControl(new IVLabelControl(bGrMeter.GetVShifted(20),"Gain Reduction", DEFAULT_STYLE.WithDrawFrame(false).WithDrawShadows(false)));
-    pGraphics->AttachControl(new IVToggleControl(bBypass, kBypass, "", DEFAULT_STYLE.WithShowLabel(false)));
+    //Controls
+    pGraphics->AttachControl(new BackgroundControl(b));
+    pGraphics->AttachControl(new MeterControl(bInputMeter), kCtrlInMeter);
+    pGraphics->AttachControl(new MeterControl(bOutputMeter), kCtrlOutMeter);
+    pGraphics->AttachControl(new KnobControl(bInputKnob, kGain, "Input"));
+    pGraphics->AttachControl(new KnobControl(bOutputKnob, kOutGain, "Output"));
+    pGraphics->AttachControl(new NetworkControl<32, 4>(bMainPanel, kModel), kCtrlNN);
+    pGraphics->AttachControl(new DropDownControl(bDropDown, kModel));
+    pGraphics->AttachControl(new ITextControl(bDropDown.GetHShifted(-130.).GetHPadded(25.), "Pick your network architecture: ",IText(12., IColor(255,203,201,201), "Inter-Regular")));
+    pGraphics->AttachControl(new GrMeterControl(bGRMeter), kCtrlGrMeter);
+    pGraphics->AttachControl(new ITextControl(bGRMeter.GetHShifted(-150.), "Gain Reduction: ", IText(12., IColor(255,203,201,201), "Inter-Regular")));
+    
   };
 #endif
 }
@@ -86,12 +91,14 @@ void NNComp::OnIdle()
   inSender.TransmitData(*this);
   outSender.TransmitData(*this);
   grSender.TransmitData(*this);
+  nnSender.TransmitData(*this);
 }
 
 void NNComp::OnReset()
 {
   inSender.Reset(GetSampleRate());
   outSender.Reset(GetSampleRate());
+  grSender.Reset(GetSampleRate());
 }
 
 void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
@@ -100,42 +107,50 @@ void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
   const double outGain = DBToAmp(GetParam(kOutGain)->Value());
   const int nChans = NOutChansConnected();
   const int model = GetParam(kModel)->Int();
-  const bool bypass = GetParam(kBypass)->Bool();
-
+  
+  //GR buffer
+  sample **gr;
+  gr = new sample*[1];
+  for(int i = 0; i < nChans; i++)
+  {
+    gr[i] = new sample[nFrames];
+  }
+  
   //Iterate over buffer
   for (int s = 0; s < nFrames; s++) {
+    //Set GR to 0
+    gr[0][s] = 0.0;
+    
     for (int c = 0; c < nChans; c++) {
-      grBuffer = 0.0;
       //apply NN
       inputs[c][s] *= inGain;
-      
-      if(bypass) {
-        if(c == 0) {
-          nnL.ProcessSample(&inputs[c][s], &outputs[c][s], model);
-        } else if(c == 1) {
-          nnR.ProcessSample(&inputs[c][s], &outputs[c][s], model);
-        }
+      if(c == 0) {
+        nnL.ProcessSample(&inputs[c][s], &outputs[c][s], model);
+      } else if(c == 1) {
+        nnR.ProcessSample(&inputs[c][s], &outputs[c][s], model);
       }
       
-      //GR Meter
-      grBuffer += abs(inputs[c][s]) - abs(outputs[c][s]);
+      //Set gr value
+      gr[c][s] = std::abs(inputs[c][s]) - std::abs(outputs[c][s]);
       
       //Apply out gain
       outputs[c][s] *= outGain;
-    }
-    
-    grBuffer /= nChans;
-    if(grBuffer > grPrevious) {
-      grPrevious = grBuffer;
-    } else {
-      grPrevious -= 1 / (1 * GetSampleRate());
+      //outputs[c][s] = inputs[c][s] * outGain;
     }
   }
   
   //Send values to meters
-  grAmount = 1 - grPrevious;
   inSender.ProcessBlock(inputs, nFrames, kCtrlInMeter);
   outSender.ProcessBlock(outputs, nFrames, kCtrlOutMeter);
-  grSender.PushData({kCtrlGrMeter, {grAmount}});
+  grSender.ProcessBlock(gr, nFrames, kCtrlGrMeter);
+  nnSender.ProcessWeights(nnL, kCtrlNN, model);
+  
+  //free gr buffer
+  for(int i = 0; i < nChans; i++)
+  {
+    delete [] gr[i];
+  }
+  delete [] gr;
+  
 }
 #endif
