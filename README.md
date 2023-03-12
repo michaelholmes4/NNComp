@@ -1,9 +1,16 @@
 # Real-Time Virtual Analog Modelling of an Audio Compressor Using Recurrent Neural Networks
+This is the code base for the Honours [thesis](https://files.hcloudh.com/s/zrpJqozJeN6Y25c) project submitted to the University of Queensland by Michael Holmes 2022.
+
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/99728921/200828493-54f9ee7d-5127-4c0e-a326-13283a6a058b.png" width="600">
+  <img src="https://user-images.githubusercontent.com/99728921/200828493-54f9ee7d-5127-4c0e-a326-13283a6a058b.png" width="400">
 </p>
 
-This is the code base for the Honours [thesis](https://files.hcloudh.com/s/zrpJqozJeN6Y25c) project submitted to the University of Queensland by Michael Holmes 2022.
+### Update 2023
+New GUI!!  
+Now the plugin has a modern look and the weights of each neural network can be visualised in real-time.
+<p align="center">
+<img width="600" alt="Screenshot" src="https://user-images.githubusercontent.com/99728921/224518583-933bb6e9-eb92-44fe-b582-400ca899a421.png">
+</p>
 
 ### Acknowledgements
 The following papers were highly influential in guiding this project:
