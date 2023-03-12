@@ -1,6 +1,10 @@
 # Plugin
 In this module is both code to load and use the C++ headers generated in `Training` as well as the iPlug2 project file used in the thesis project.
 
+<p align="center">
+<img width="500" alt="Screenshot" src="https://user-images.githubusercontent.com/99728921/224518583-933bb6e9-eb92-44fe-b582-400ca899a421.png">
+</p>
+
 ## Contents
 * `dsh.h` - Provides an example of how to load model header files and process an input sample 
 * `layers.h` - C++ implementation of LSTM, GRU and RNN layer equations
