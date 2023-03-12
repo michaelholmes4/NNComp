@@ -9,7 +9,7 @@ This is the code base for the Honours [thesis](https://files.hcloudh.com/s/zrpJq
 New GUI!!  
 Now the plugin has a modern look and the weights of each neural network can be visualised in real-time.
 <p align="center">
-<img width="600" alt="Screenshot" src="https://user-images.githubusercontent.com/99728921/224518583-933bb6e9-eb92-44fe-b582-400ca899a421.png">
+<img width="600" alt="Screenshot" src="https://user-images.githubusercontent.com/99728921/224527763-4ca6901a-88c7-493e-839e-b351a2d7af7a.png">
 </p>
 
 ### Acknowledgements
