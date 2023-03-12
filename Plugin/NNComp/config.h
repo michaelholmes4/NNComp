@@ -1,12 +1,12 @@
 #define PLUG_NAME "NNComp"
 #define PLUG_MFR "michaelholmes"
 #define PLUG_VERSION_HEX 0x00010000
-#define PLUG_VERSION_STR "1.0.0"
+#define PLUG_VERSION_STR "0.1.1"
 #define PLUG_UNIQUE_ID 'dgq4'
 #define PLUG_MFR_ID 'Acme'
 #define PLUG_URL_STR "https://iplug2.github.io"
-#define PLUG_EMAIL_STR "spam@me.com"
-#define PLUG_COPYRIGHT_STR "Copyright 2020 Acme Inc"
+#define PLUG_EMAIL_STR "michael.holmes4@icloud.com"
+#define PLUG_COPYRIGHT_STR "Copyright 2023 Michael Holmes"
 #define PLUG_CLASS_NAME NNComp
 
 #define BUNDLE_NAME "NNComp"
@@ -28,7 +28,7 @@
 #define PLUG_HEIGHT 666
 #define PLUG_FPS 60
 #define PLUG_SHARED_RESOURCES 0
-#define PLUG_HOST_RESIZE 0
+#define PLUG_HOST_RESIZE 1
 
 #define AUV2_ENTRY NNComp_Entry
 #define AUV2_ENTRY_STR "NNComp_Entry"

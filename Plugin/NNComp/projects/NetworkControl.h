@@ -38,21 +38,20 @@ public:
     if(!g.CheckLayer(mLayer))
     {
       g.StartLayer(this, mRECT);
-      g.PathCircle(mCol[0], mDisplay.MH(), 7.);
-      for(int i = 0 ; i < nLayers + 1; i ++)
+      g.PathCircle(mCol[0], mDisplay.MH(), 7.); //Input
+      for(int i = 0 ; i < nLayers; i ++) //Layers
       {
         for(int j = 0; j < nHidden; j++)
         {
           g.PathCircle(mCol[i + 1], mRow[j], 7.);
         }
       }
-      g.PathCircle(mCol[nLayers + 2], mDisplay.MH(), 7.);
-      
+      g.PathCircle(mCol[nLayers + 1], mDisplay.MH(), 7.); //output
       g.PathStroke(gradient, 1.);
       
       //Draw Labels
       g.DrawText(tBody, "Input", IRECT(mCol[0] - 10., mDisplay.MH() + 20. , mCol[0] + 10., mDisplay.MH() + 35.));
-      g.DrawText(tBody, "Output", IRECT(mCol[nLayers + 2] - 10., mDisplay.MH() + 20. , mCol[nLayers + 2] + 10., mDisplay.MH() + 35.));
+      g.DrawText(tBody, "Output", IRECT(mCol[nLayers + 1] - 10., mDisplay.MH() + 20. , mCol[nLayers + 1] + 10., mDisplay.MH() + 35.));
       for(int i = 0 ; i < nLayers; i ++)
       {
         if(type == ModelType::gru)
@@ -75,21 +74,21 @@ public:
     //Draw lines
     for(int j = 0; j < nHidden; j++)
     {
-      g.DrawLine(COLOR_WHITE.WithOpacity(Clip((AmpToDB(weights[0][j]) + 50.)/200., 0.0, 1.0) + 0.05),mCol[0] + 12., mDisplay.MH(), mCol[1] - 12, mRow[j]);
+      g.DrawLine(COLOR_WHITE.WithOpacity(Clip((AmpToDB(weights[0][j]) + 60.)/100., 0.0, 1.0) + 0.05),mCol[0] + 12., mDisplay.MH(), mCol[1] - 12, mRow[j]);
     }
-    for(int i = 0 ; i < nLayers; i ++)
+    for(int i = 0 ; i < nLayers - 1; i ++)
     {
       for(int j = 0; j < nHidden; j++)
       {
         for(int k = 0; k < nHidden; k++)
         {
-          g.DrawLine(COLOR_WHITE.WithOpacity(Clip((AmpToDB(weights[i + 1][j + (k * nHidden)]) + 50.)/200., 0.0, 1.0) + 0.05), mCol[i + 1] + 12., mRow[j], mCol[i + 2] - 12., mRow[k]);
+          g.DrawLine(COLOR_WHITE.WithOpacity(Clip((AmpToDB(weights[i + 1][j + (k * nHidden)]) + 60.)/100., 0.0, 1.0) + 0.05), mCol[i + 1] + 12., mRow[j], mCol[i + 2] - 12., mRow[k]);
         }
       }
     }
     for(int j = 0; j < nHidden; j++)
     {
-      g.DrawLine(COLOR_WHITE.WithOpacity(Clip((AmpToDB(weights[MAX_LAYERS + 1][j]) + 50.)/200., 0.0, 1.0) + 0.05), mCol[nLayers + 1] + 12., mRow[j], mCol[nLayers + 2] - 12, mDisplay.MH());
+      g.DrawLine(COLOR_WHITE.WithOpacity(Clip((AmpToDB(weights[MAX_LAYERS][j]) + 60.)/100., 0.0, 1.0) + 0.05), mCol[nLayers] + 12., mRow[j], mCol[nLayers + 1] - 12, mDisplay.MH());
     }
   }
   
@@ -113,10 +112,10 @@ public:
       IByteStream stream(pData, dataSize);
 
       int pos = 0;
-      ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d;
+      ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d;
       pos = stream.Get(&d, pos);
       
-      for(int l = 0; l < MAX_LAYERS + 2; l++)
+      for(int l = 0; l < MAX_LAYERS + 1; l++)
       {
         for(int i = 0; i < MAX_HIDDEN * MAX_HIDDEN; i++)
         {
@@ -137,11 +136,11 @@ protected:
   {
     mDisplay = mRECT.GetPadded(-30.).GetVShifted(-10.);
     
-    float width = mDisplay.W() / (nLayers + 3);
+    float width = mDisplay.W() / (nLayers + 2);
     float height = mDisplay.H() / nHidden;
     
     //Create column coordinates
-    for(int i = 0; i < nLayers + 3; i++)
+    for(int i = 0; i < nLayers + 2; i++)
     {
       mCol[i] = mDisplay.L + (width * i) + (width/2);
     }
@@ -313,7 +312,7 @@ private:
   IColor cText = IColor(255,203,201,201);
   IText tBody = IText(12., cText, "Inter-Regular");
   
-  std::array<float, MAX_HIDDEN * MAX_HIDDEN> weights[MAX_LAYERS + 2];
+  std::array<float, MAX_HIDDEN * MAX_HIDDEN> weights[MAX_LAYERS + 1];
 
 };
 

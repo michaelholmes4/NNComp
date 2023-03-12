@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>NNComp</string>
 	<key>CFBundleGetInfoString</key>
-	<string>NNComp v1.0.0 Copyright 2020 Acme Inc</string>
+	<string>NNComp v1.0.0 Copyright 2023 Michael Holmes</string>
 	<key>CFBundleIconFile</key>
 	<string>NNComp.icns</string>
 	<key>CFBundleIdentifier</key>
