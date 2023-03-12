@@ -207,7 +207,7 @@ public:
       g.StartLayer(this, mRECT);
       ISVG logo = g.LoadSVG(LOGO_SVG);
       g.DrawSVG(logo, mTopPanel.GetInsideSize(12.52, 10.51, 166.78, 37.67));
-      g.DrawText(tBody, "Visualisations of 27 different nerual network combinations modelling a classic FET compressor", mTopPanel.GetInsideSize(365, 21, 446, 12));
+      g.DrawText(tBody, "Visualisations of 27 different nerual network combinations modelling a classic FET compressor", mTopPanel.GetInsideSize(365, 19, 446, 10));
       mLayerFg = g.EndLayer();
     }
     g.DrawLayer(mLayerFg);
@@ -555,7 +555,7 @@ public:
     g.DrawLayer(mLayerBg);
     
     //Draw Tracks
-    IPattern gradient = IPattern::CreateLinearGradient(mChannelArea.R, mChannelArea.T, mChannelArea.L, mChannelArea.R);
+    IPattern gradient = IPattern::CreateLinearGradient(mChannelArea.R, mChannelArea.T, mChannelArea.L, mChannelArea.T);
     gradient.AddStop(IColor(255, 138, 248, 255), 0.0);
     gradient.AddStop(IColor(255, 107, 149, 255), 0.5);
     gradient.AddStop(IColor(255, 213, 124, 255), 1.0);

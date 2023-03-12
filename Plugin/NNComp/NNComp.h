@@ -6,6 +6,7 @@
 #include "CustomControls.h"
 #include "NetworkControl.h"
 #include "dsp.h"
+#include "WeightSender.h"
 
 const int kNumPresets = 1;
 
@@ -23,6 +24,7 @@ enum EControlTags
   kCtrlInMeter = 0,
   kCtrlOutMeter,
   kCtrlGrMeter,
+  kCtrlNN,
   kCtrlTags
 };
 
@@ -44,6 +46,7 @@ private:
   MeterSender<2> inSender {5., 0., 0.3, 0.5};
   MeterSender<2> outSender {5., 0., 0.3, 0.5};
   MeterSender<2> grSender {5., 0.1, 0.5, 0.5};
+  WeightSender<32, 4> nnSender;
   
   NN<sample> nnL;
   NN<sample> nnR;

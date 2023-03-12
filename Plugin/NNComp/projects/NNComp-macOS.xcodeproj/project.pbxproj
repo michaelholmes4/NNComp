@@ -449,6 +449,7 @@
 		087B68A629AE1ABB00109416 /* NetworkControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkControl.h; sourceTree = "<group>"; };
 		08AF181328900E4B002735FC /* dsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dsp.h; sourceTree = "<group>"; };
 		08B5467A29AA39DD00A3D477 /* CustomControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomControls.h; sourceTree = "<group>"; };
+		08BBD70B29BBE37E0064E213 /* WeightSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeightSender.h; sourceTree = "<group>"; };
 		4F03A55020A4621000EBDFFB /* IGraphicsNanoVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGraphicsNanoVG.h; sourceTree = "<group>"; };
 		4F03A55420A4621000EBDFFB /* IGraphicsNanoVG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsNanoVG.cpp; sourceTree = "<group>"; };
 		4F03A55620A4621000EBDFFB /* IGraphicsLiveEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphicsLiveEdit.h; path = ../../iPlug2/IGraphics/IGraphicsLiveEdit.h; sourceTree = "<group>"; };
@@ -890,6 +891,7 @@
 			isa = PBXGroup;
 			children = (
 				087B68A629AE1ABB00109416 /* NetworkControl.h */,
+				08BBD70B29BBE37E0064E213 /* WeightSender.h */,
 				08B5467A29AA39DD00A3D477 /* CustomControls.h */,
 				08EBB0BB2892276700DE7F17 /* NNs */,
 				52FBBED30D0CF143001C8B8A /* config.h */,

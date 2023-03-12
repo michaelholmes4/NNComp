@@ -132,7 +132,6 @@ public:
     }
   }
   
-private:
   //Models
   Gru_32_1<T> m0;
   Gru_16_2<T> m1;
@@ -169,4 +168,5 @@ private:
   Rnn_8_1<T> m24;
   Rnn_4_2<T> m25;
   Rnn_2_4<T> m26;
+
 };

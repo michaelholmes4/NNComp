@@ -74,11 +74,11 @@ NNComp::NNComp(const InstanceInfo& info)
     pGraphics->AttachControl(new MeterControl(bOutputMeter), kCtrlOutMeter);
     pGraphics->AttachControl(new KnobControl(bInputKnob, kGain, "Input"));
     pGraphics->AttachControl(new KnobControl(bOutputKnob, kOutGain, "Output"));
-    pGraphics->AttachControl(new NetworkControl<32, 4>(bMainPanel, kModel));
+    pGraphics->AttachControl(new NetworkControl<32, 4>(bMainPanel, kModel), kCtrlNN);
     pGraphics->AttachControl(new DropDownControl(bDropDown, kModel));
     pGraphics->AttachControl(new ITextControl(bDropDown.GetHShifted(-130.).GetHPadded(25.), "Pick your network architecture: ",IText(12., IColor(255,203,201,201), "Inter-Regular")));
     pGraphics->AttachControl(new GrMeterControl(bGRMeter), kCtrlGrMeter);
-    pGraphics->AttachControl(new ITextControl(bGRMeter.GetHShifted(-150.), "Gain Reduction: ",IText(12., IColor(255,203,201,201), "Inter-Regular")));
+    pGraphics->AttachControl(new ITextControl(bGRMeter.GetHShifted(-150.), "Gain Reduction: ", IText(12., IColor(255,203,201,201), "Inter-Regular")));
     
   };
 #endif
@@ -91,6 +91,7 @@ void NNComp::OnIdle()
   inSender.TransmitData(*this);
   outSender.TransmitData(*this);
   grSender.TransmitData(*this);
+  nnSender.TransmitData(*this);
 }
 
 void NNComp::OnReset()
@@ -142,6 +143,7 @@ void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
   inSender.ProcessBlock(inputs, nFrames, kCtrlInMeter);
   outSender.ProcessBlock(outputs, nFrames, kCtrlOutMeter);
   grSender.ProcessBlock(gr, nFrames, kCtrlGrMeter);
+  nnSender.ProcessWeights(nnL, kCtrlNN, model);
   
   //free gr buffer
   for(int i = 0; i < nChans; i++)
@@ -149,5 +151,6 @@ void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
     delete [] gr[i];
   }
   delete [] gr;
+  
 }
 #endif
