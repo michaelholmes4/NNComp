@@ -1,4 +1,4 @@
-# Real-Time Virtual Analog Modelling of an Audio Compressor Using Recurrent Neural Networks
+# NNComp
 This is the code base for the Honours [thesis](https://files.hcloudh.com/s/zrpJqozJeN6Y25c) project submitted to the University of Queensland by Michael Holmes 2022.
 
 <p align="center">
