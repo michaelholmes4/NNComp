@@ -22,7 +22,7 @@ This repo can be used to train RNN, LSTM and GRU neural networks and convert the
 
 The trained models from the thesis project can be downloaded [here](https://files.hcloudh.com/s/qcNFYJYneXgY8X5).
 
-An audio plugin was created using [iPlug2](https://github.com/iPlug2/iPlug2) and can be downloaded in the releases tab.
+An audio plugin was created using [iPlug2](https://github.com/iPlug2/iPlug2) and can be downloaded in the releases tab. **Note for best sound quality please run the plugin at a sample rate of 48kHz. Additional sample rates to be added in the future.*
 
 
 ## Contents
