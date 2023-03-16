@@ -10,7 +10,7 @@ NNComp::NNComp(const InstanceInfo& info)
 {
   GetParam(kGain)->InitDouble("InGain",-30, -30., 30., 0.1, "");
   GetParam(kOutGain)->InitDouble("OutGain",30., -30., 30., 0.1, "");
-  GetParam(kModel)->InitEnum("ModelSelect", 0, 26, "", IParam::kFlagsNone, "",
+  GetParam(kModel)->InitEnum("ModelSelect", 2, 26, "", IParam::kFlagsNone, "",
                              "gru-32-1",
                              "gru-16-2",
                              "gru-8-4",
@@ -135,7 +135,6 @@ void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
       
       //Apply out gain
       outputs[c][s] *= outGain;
-      //outputs[c][s] = inputs[c][s] * outGain;
     }
   }
   

@@ -20,5 +20,258 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA452507-3035-4C45-9F67-55F9D5C916B4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "projects/WeightSender.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "ProcessGru_1(model, ctrlTag)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EA452507-3035-4C45-9F67-55F9D5C916B4 - 1c66a672ff34a562"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_1&lt;Gru_32_1&lt;double&gt; &gt;(Gru_32_1&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "EA452507-3035-4C45-9F67-55F9D5C916B4 - 781cf4264fac4a66"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_1&lt;Gru_16_1&lt;double&gt; &gt;(Gru_16_1&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "EA452507-3035-4C45-9F67-55F9D5C916B4 - 87718ef85aa46384"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_1&lt;Gru_8_1&lt;double&gt; &gt;(Gru_8_1&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BBEF990E-62E2-4A96-AA88-D937AF14CC0D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "projects/WeightSender.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "ProcessGru_2(model, ctrlTag)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BBEF990E-62E2-4A96-AA88-D937AF14CC0D - e20b57b0105ff55d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_2&lt;Gru_16_2&lt;double&gt; &gt;(Gru_16_2&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "BBEF990E-62E2-4A96-AA88-D937AF14CC0D - 14dfecbcc1e7ead3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_2&lt;Gru_8_2&lt;double&gt; &gt;(Gru_8_2&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "BBEF990E-62E2-4A96-AA88-D937AF14CC0D - 15711a97ed94ad4b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_2&lt;Gru_4_2&lt;double&gt; &gt;(Gru_4_2&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C189F91A-FCA7-4204-AFC3-5D5764E2F671"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "projects/WeightSender.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "ProcessGru_1(model, ctrlTag)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C189F91A-FCA7-4204-AFC3-5D5764E2F671 - 1c66a672ff34a409"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_1&lt;Gru_32_1&lt;double&gt; &gt;(Gru_32_1&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "692">
+               </Location>
+               <Location
+                  uuid = "C189F91A-FCA7-4204-AFC3-5D5764E2F671 - 781cf4264fac4b0d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_1&lt;Gru_16_1&lt;double&gt; &gt;(Gru_16_1&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "436">
+               </Location>
+               <Location
+                  uuid = "C189F91A-FCA7-4204-AFC3-5D5764E2F671 - 87718ef85aa462ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void iplug::igraphics::WeightSender&lt;32, 4, 64&gt;::ProcessGru_1&lt;Gru_8_1&lt;double&gt; &gt;(Gru_8_1&lt;double&gt;, int)"
+                  moduleName = "NNComp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelholmes/Documents/Repos/NNComp/Plugin/NNComp/projects/WeightSender.h"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "308">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D4A7E784-7F67-483B-B610-4ED2378968F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "projects/NetworkControl.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "Draw(g)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD5669AC-40CF-497E-BD83-CE05EC1734F5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "projects/NetworkControl.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "Draw(g)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "92722974-5529-4753-B74A-9407F4E4E1DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "projects/NetworkControl.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "Draw(g)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B99E4F6B-9175-4B1A-ABD8-393FA513A73A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "projects/NetworkControl.h"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "OnMsgFromDelegate(msgTag, dataSize, pData)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

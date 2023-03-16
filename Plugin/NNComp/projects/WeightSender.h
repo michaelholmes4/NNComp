@@ -6,11 +6,11 @@ BEGIN_IPLUG_NAMESPACE
 BEGIN_IGRAPHICS_NAMESPACE
 
 template <int MAX_HIDDEN, int MAX_LAYERS, int QUEUE_SIZE = 64>
-class WeightSender : public ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>
+class WeightSender : public ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>
 {
 public:
   WeightSender()
-  : ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>()
+  : ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>()
   {
     
   }
@@ -107,7 +107,7 @@ public:
   template<typename T>
   void ProcessGru_1(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -118,26 +118,17 @@ public:
     //layer 1
     for(int i = 0; i < model.h; i++)
     {
-      for(int o = 0; o < model.h; o++)
-      {
-        d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.f.A.coeff(i, o);
-      }
-    }
-    
-    //FCC Layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
+      d.vals[MAX_LAYERS][i] = model.l0.ht[i] * model.f.A.coeff(i, 0);
     }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
   template<typename T>
   void ProcessGru_2(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -151,24 +142,18 @@ public:
       for(int o = 0; o < model.h; o++)
       {
         d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.l1.Wir.coeff(i, o);
-        d.vals[2][i + (o * model.h)] = model.l1.ht[i] * model.f.A.coeff(i, o);
       }
-    }
-    
-    //FCC layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
+      d.vals[MAX_LAYERS][i] = model.l1.ht[i] * model.f.A.coeff(i, 0);
     }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
   template<typename T>
   void ProcessGru_4(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -184,24 +169,18 @@ public:
         d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.l1.Wir.coeff(i, o);
         d.vals[2][i + (o * model.h)] = model.l1.ht[i] * model.l2.Wir.coeff(i, o);
         d.vals[3][i + (o * model.h)] = model.l2.ht[i] * model.l3.Wir.coeff(i, o);
-        d.vals[4][i + (o * model.h)] = model.l3.ht[i] * model.f.A.coeff(i, o);
       }
-    }
-    
-    //Output layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
+      d.vals[MAX_LAYERS][i] = model.l3.ht[i] * model.f.A.coeff(i, 0);
     }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
   template<typename T>
   void ProcessLstm_1(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -212,26 +191,18 @@ public:
     //layer 1
     for(int i = 0; i < model.h; i++)
     {
-      for(int o = 0; o < model.h; o++)
-      {
-        d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.f.A.coeff(i, o);
-      }
+      d.vals[MAX_LAYERS][i] = model.l0.ht[i] * model.f.A.coeff(i, 0);
     }
     
-    //FCC Layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
-    }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
   template<typename T>
   void ProcessLstm_2(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -245,24 +216,18 @@ public:
       for(int o = 0; o < model.h; o++)
       {
         d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.l1.Wii.coeff(i, o);
-        d.vals[2][i + (o * model.h)] = model.l1.ht[i] * model.f.A.coeff(i, o);
       }
-    }
-    
-    //FCC layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
+      d.vals[MAX_LAYERS][i] = model.l1.ht[i] * model.f.A.coeff(i, 0);
     }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
   template<typename T>
   void ProcessLstm_4(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -278,24 +243,18 @@ public:
         d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.l1.Wii.coeff(i, o);
         d.vals[2][i + (o * model.h)] = model.l1.ht[i] * model.l2.Wii.coeff(i, o);
         d.vals[3][i + (o * model.h)] = model.l2.ht[i] * model.l3.Wii.coeff(i, o);
-        d.vals[4][i + (o * model.h)] = model.l3.ht[i] * model.f.A.coeff(i, o);
       }
-    }
-    
-    //Output layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
+      d.vals[MAX_LAYERS][i] = model.l3.ht[i] * model.f.A.coeff(i, 0);
     }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
   template<typename T>
   void ProcessRnn_1(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -306,26 +265,17 @@ public:
     //layer 1
     for(int i = 0; i < model.h; i++)
     {
-      for(int o = 0; o < model.h; o++)
-      {
-        d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.f.A.coeff(i, o);
-      }
-    }
-    
-    //FCC Layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
+      d.vals[MAX_LAYERS][i] = model.l0.ht[i] * model.f.A.coeff(i, 0);
     }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
   template<typename T>
   void ProcessRnn_2(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -339,24 +289,18 @@ public:
       for(int o = 0; o < model.h; o++)
       {
         d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.l1.Wih.coeff(i, o);
-        d.vals[2][i + (o * model.h)] = model.l1.ht[i] * model.f.A.coeff(i, o);
       }
-    }
-    
-    //FCC layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
+      d.vals[MAX_LAYERS][i] = model.l1.ht[i] * model.f.A.coeff(i, 0);
     }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
   template<typename T>
   void ProcessRnn_4(T model, int ctrlTag)
   {
-    ISenderData<MAX_LAYERS + 2, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
+    ISenderData<MAX_LAYERS + 1, std::array<float, MAX_HIDDEN * MAX_HIDDEN>> d {ctrlTag, model.h, 0};
     
     //process input layer
     for(int i = 0; i < model.h; i++)
@@ -372,18 +316,12 @@ public:
         d.vals[1][i + (o * model.h)] = model.l0.ht[i] * model.l1.Wih.coeff(i, o);
         d.vals[2][i + (o * model.h)] = model.l1.ht[i] * model.l2.Wih.coeff(i, o);
         d.vals[3][i + (o * model.h)] = model.l2.ht[i] * model.l3.Wih.coeff(i, o);
-        d.vals[4][i + (o * model.h)] = model.l3.ht[i] * model.f.A.coeff(i, o);
       }
-    }
-    
-    //Output layer
-    for(int i = 0; i < model.h; i++)
-    {
-      d.vals[MAX_LAYERS + 1][i] = model.f.y;
+      d.vals[MAX_LAYERS][i] = model.l3.ht[i] * model.f.A.coeff(i, 0);
     }
     
     //Send data
-    ISender<MAX_LAYERS + 2, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
+    ISender<MAX_LAYERS + 1, QUEUE_SIZE, std::array<float, MAX_HIDDEN * MAX_HIDDEN>>::PushData(d);
   }
   
 private:
