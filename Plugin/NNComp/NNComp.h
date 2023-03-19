@@ -7,6 +7,7 @@
 #include "NetworkControl.h"
 #include "dsp.h"
 #include "WeightSender.h"
+#include "AudioBuffer.h"
 
 const int kNumPresets = 1;
 
@@ -50,5 +51,8 @@ private:
   
   NN<sample> nnL;
   NN<sample> nnR;
+  
+  CustomAudioBuffer<sample, 2> gr;
+  
 #endif
 };

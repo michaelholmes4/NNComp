@@ -99,6 +99,9 @@ void NNComp::OnReset()
   inSender.Reset(GetSampleRate());
   outSender.Reset(GetSampleRate());
   grSender.Reset(GetSampleRate());
+  
+  gr.SetFrameLength(GetBlockSize());
+  
 }
 
 void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
@@ -108,18 +111,10 @@ void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
   const int nChans = NOutChansConnected();
   const int model = GetParam(kModel)->Int();
   
-  //GR buffer
-  sample **gr;
-  gr = new sample*[1];
-  for(int i = 0; i < nChans; i++)
-  {
-    gr[i] = new sample[nFrames];
-  }
-  
   //Iterate over buffer
   for (int s = 0; s < nFrames; s++) {
     //Set GR to 0
-    gr[0][s] = 0.0;
+    gr.GetBuffer()[0][s] = 0.0;
     
     for (int c = 0; c < nChans; c++) {
       //apply NN
@@ -131,7 +126,10 @@ void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
       }
       
       //Set gr value
-      gr[c][s] = std::abs(inputs[c][s]) - std::abs(outputs[c][s]);
+      if(c < 2)
+      {
+        gr.GetBuffer()[c][s] = std::abs(inputs[c][s]) - std::abs(outputs[c][s]);
+      }
       
       //Apply out gain
       outputs[c][s] *= outGain;
@@ -141,15 +139,7 @@ void NNComp::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
   //Send values to meters
   inSender.ProcessBlock(inputs, nFrames, kCtrlInMeter);
   outSender.ProcessBlock(outputs, nFrames, kCtrlOutMeter);
-  grSender.ProcessBlock(gr, nFrames, kCtrlGrMeter);
+  grSender.ProcessBlock(gr.GetBuffer(), nFrames, kCtrlGrMeter);
   nnSender.ProcessWeights(nnL, kCtrlNN, model);
-  
-  //free gr buffer
-  for(int i = 0; i < nChans; i++)
-  {
-    delete [] gr[i];
-  }
-  delete [] gr;
-  
 }
 #endif
