@@ -1,6 +1,6 @@
 #define PLUG_NAME "NNComp"
 #define PLUG_MFR "michaelholmes"
-#define PLUG_VERSION_HEX 0x00010000
+#define PLUG_VERSION_HEX 0x00000102
 #define PLUG_VERSION_STR "0.1.1"
 #define PLUG_UNIQUE_ID 'dgq4'
 #define PLUG_MFR_ID 'Acme'

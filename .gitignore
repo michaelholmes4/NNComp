@@ -22,3 +22,9 @@ Plugin/iPlug2_Project/gui/*
 
 Icon?
 .DS_Stor*
+Plugin/NNComp/build-mac.log
+Plugin/NNComp/build-mac/XCBuildData/a4a3e2c5a6b52be7831ec096f7425668-manifest.xcbuild
+Plugin/NNComp/build-mac/XCBuildData/BuildDescriptionCacheIndex-edb1712b51940494ead05f8e60a6b223
+Plugin/NNComp/installer/NNComp.iss
+Plugin/NNComp/installer/NNComp.pkgproj
+Plugin/NNComp/installer/NNComp.pkgproj
