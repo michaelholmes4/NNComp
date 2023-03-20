@@ -6,36 +6,29 @@ template<typename T, int nChans>
 class CustomAudioBuffer
 {
 public:
-  CustomAudioBuffer(){}
+  CustomAudioBuffer()
+  {
+  }
   
   void SetFrameLength(int length)
   {
-    //Clear memory
-    if(initialised != false)
-    {
-      for(int i = 0; i < nChans; i++)
-      {
-        delete [] buffer[i];
-      }
-      delete [] buffer;
-    }
+    //resize buffer
+    buffer.resize(length * nChans);
     
-    //Create Buffer
-    buffer = new T*[nChans];
+    //Reset pointers
+    ptrs.clear();
     for(int i = 0; i < nChans; i++)
     {
-      buffer[i] = new T[length];
+      ptrs.push_back(&buffer[i * nChans]);
     }
-    initialised = true;
   }
   
   T** GetBuffer()
   {
-    return buffer;
+    return &ptrs[0];
   }
   
 private:
-  T** buffer;
-  bool initialised = false;
-  
+  std::vector<T*> ptrs;
+  std::vector<T> buffer;
 };
