@@ -354,8 +354,101 @@
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugPluginBase.h">
       <Filter>IPlug</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\iPlug2\IGraphics\ISender.h">
-      <Filter>IGraphics</Filter>
+    <ClInclude Include="dsp.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-2-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-4-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-4-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-8-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-8-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-8-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-16-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-16-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="gru-32-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="layers.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-2-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-4-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-4-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-8-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-8-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-8-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-16-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-16-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="lstm-32-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-2-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-4-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-4-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-8-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-8-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-8-4.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-16-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-16-2.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="rnn-32-1.h">
+      <Filter>NN</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioBuffer.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomControls.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="WeightSender.h">
+      <Filter>Custom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +508,12 @@
     </Filter>
     <Filter Include="IPlug\VST3\VST3_SDK\plugininterfaces\base">
       <UniqueIdentifier>{5f06b03e-5093-46c0-9513-efb4e494c857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NN">
+      <UniqueIdentifier>{884f0a5f-9fa8-4255-b7dd-c15d478f035b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Custom">
+      <UniqueIdentifier>{c73c2068-990e-454a-8683-8eccded07a79}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

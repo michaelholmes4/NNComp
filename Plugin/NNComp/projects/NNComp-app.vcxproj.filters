@@ -255,8 +255,14 @@
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugPluginBase.h">
       <Filter>IPlug</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\iPlug2\IGraphics\ISender.h">
-      <Filter>IGraphics</Filter>
+    <ClInclude Include="AudioBuffer.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomControls.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="WeightSender.h">
+      <Filter>Custom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +295,9 @@
     </Filter>
     <Filter Include="IPlug\APP\RTAudioMidi\include">
       <UniqueIdentifier>{649c5de3-b4c2-4de9-8d57-3b1762646259}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Custom">
+      <UniqueIdentifier>{95a4e5ca-060c-410d-8431-e33f3142b247}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

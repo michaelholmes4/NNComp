@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33423.256
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NNComp-app", "projects\NNComp-app.vcxproj", "{41785AE4-5B70-4A75-880B-4B418B4E13C6}"
 EndProject
@@ -23,8 +23,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Debug|Win32.ActiveCfg = Debug|Win32
 		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Debug|Win32.Build.0 = Debug|Win32
-		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Debug|x64.ActiveCfg = Debug|x64
-		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Debug|x64.Build.0 = Debug|x64
+		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Debug|x64.ActiveCfg = Release|x64
+		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Debug|x64.Build.0 = Release|x64
 		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Release|Win32.ActiveCfg = Release|Win32
 		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Release|Win32.Build.0 = Release|Win32
 		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Release|x64.ActiveCfg = Release|x64
@@ -35,8 +35,8 @@ Global
 		{41785AE4-5B70-4A75-880B-4B418B4E13C6}.Tracer|x64.Build.0 = Tracer|x64
 		{2EB4846A-93E0-43A0-821E-12237105168F}.Debug|Win32.ActiveCfg = Debug|Win32
 		{2EB4846A-93E0-43A0-821E-12237105168F}.Debug|Win32.Build.0 = Debug|Win32
-		{2EB4846A-93E0-43A0-821E-12237105168F}.Debug|x64.ActiveCfg = Debug|x64
-		{2EB4846A-93E0-43A0-821E-12237105168F}.Debug|x64.Build.0 = Debug|x64
+		{2EB4846A-93E0-43A0-821E-12237105168F}.Debug|x64.ActiveCfg = Release|x64
+		{2EB4846A-93E0-43A0-821E-12237105168F}.Debug|x64.Build.0 = Release|x64
 		{2EB4846A-93E0-43A0-821E-12237105168F}.Release|Win32.ActiveCfg = Release|Win32
 		{2EB4846A-93E0-43A0-821E-12237105168F}.Release|Win32.Build.0 = Release|Win32
 		{2EB4846A-93E0-43A0-821E-12237105168F}.Release|x64.ActiveCfg = Release|x64
@@ -47,8 +47,8 @@ Global
 		{2EB4846A-93E0-43A0-821E-12237105168F}.Tracer|x64.Build.0 = Tracer|x64
 		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Debug|Win32.ActiveCfg = Debug|Win32
 		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Debug|Win32.Build.0 = Debug|Win32
-		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Debug|x64.ActiveCfg = Debug|x64
-		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Debug|x64.Build.0 = Debug|x64
+		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Debug|x64.ActiveCfg = Release|x64
+		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Debug|x64.Build.0 = Release|x64
 		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Release|Win32.ActiveCfg = Release|Win32
 		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Release|Win32.Build.0 = Release|Win32
 		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Release|x64.ActiveCfg = Release|x64
@@ -59,8 +59,8 @@ Global
 		{079FC65A-F0E5-4E97-B318-A16D1D0B89DF}.Tracer|x64.Build.0 = Tracer|x64
 		{DC4B5920-933D-4C82-B842-F34431D55A93}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DC4B5920-933D-4C82-B842-F34431D55A93}.Debug|Win32.Build.0 = Debug|Win32
-		{DC4B5920-933D-4C82-B842-F34431D55A93}.Debug|x64.ActiveCfg = Debug|x64
-		{DC4B5920-933D-4C82-B842-F34431D55A93}.Debug|x64.Build.0 = Debug|x64
+		{DC4B5920-933D-4C82-B842-F34431D55A93}.Debug|x64.ActiveCfg = Release|x64
+		{DC4B5920-933D-4C82-B842-F34431D55A93}.Debug|x64.Build.0 = Release|x64
 		{DC4B5920-933D-4C82-B842-F34431D55A93}.Release|Win32.ActiveCfg = Release|Win32
 		{DC4B5920-933D-4C82-B842-F34431D55A93}.Release|Win32.Build.0 = Release|Win32
 		{DC4B5920-933D-4C82-B842-F34431D55A93}.Release|x64.ActiveCfg = Release|x64

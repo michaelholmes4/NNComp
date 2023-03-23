@@ -54,4 +54,3 @@
 #define ROBOTO_FN "Roboto-Regular.ttf"
 #define INTER_FN "Inter-Regular.ttf"
 #define LOGO_SVG "Logo.svg"
-#define LOGO_PNG "Logo.png"

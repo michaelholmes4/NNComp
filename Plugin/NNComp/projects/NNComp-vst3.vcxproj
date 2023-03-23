@@ -164,11 +164,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level1</WarningLevel>
+      <Optimization>Custom</Optimization>
       <PreprocessorDefinitions>$(VST3_DEFS);$(DEBUG_DEFS);$(EXTRA_DEBUG_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(VST3_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VST3_INC_PATHS);%(AdditionalIncludeDirectories);$(SolutionDir)\Projects</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -205,7 +205,7 @@
       <PreprocessorDefinitions>$(VST3_DEFS);$(RELEASE_DEFS);$(EXTRA_RELEASE_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(VST3_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VST3_INC_PATHS);%(AdditionalIncludeDirectories)$(SolutionDir)\Projects</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -327,6 +327,38 @@
     <ClInclude Include="..\..\iPlug2\IPlug\VST3\IPlugVST3_View.h" />
     <ClInclude Include="..\NNComp.h" />
     <ClInclude Include="..\resources\resource.h" />
+    <ClInclude Include="AudioBuffer.h" />
+    <ClInclude Include="CustomControls.h" />
+    <ClInclude Include="dsp.h" />
+    <ClInclude Include="gru-16-1.h" />
+    <ClInclude Include="gru-16-2.h" />
+    <ClInclude Include="gru-2-4.h" />
+    <ClInclude Include="gru-32-1.h" />
+    <ClInclude Include="gru-4-2.h" />
+    <ClInclude Include="gru-4-4.h" />
+    <ClInclude Include="gru-8-1.h" />
+    <ClInclude Include="gru-8-2.h" />
+    <ClInclude Include="gru-8-4.h" />
+    <ClInclude Include="layers.h" />
+    <ClInclude Include="lstm-16-1.h" />
+    <ClInclude Include="lstm-16-2.h" />
+    <ClInclude Include="lstm-2-4.h" />
+    <ClInclude Include="lstm-32-1.h" />
+    <ClInclude Include="lstm-4-2.h" />
+    <ClInclude Include="lstm-4-4.h" />
+    <ClInclude Include="lstm-8-1.h" />
+    <ClInclude Include="lstm-8-2.h" />
+    <ClInclude Include="lstm-8-4.h" />
+    <ClInclude Include="rnn-16-1.h" />
+    <ClInclude Include="rnn-16-2.h" />
+    <ClInclude Include="rnn-2-4.h" />
+    <ClInclude Include="rnn-32-1.h" />
+    <ClInclude Include="rnn-4-2.h" />
+    <ClInclude Include="rnn-4-4.h" />
+    <ClInclude Include="rnn-8-1.h" />
+    <ClInclude Include="rnn-8-2.h" />
+    <ClInclude Include="rnn-8-4.h" />
+    <ClInclude Include="WeightSender.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\iPlug2\Dependencies\IPlug\VST3_SDK\base\source\baseiids.cpp" />
