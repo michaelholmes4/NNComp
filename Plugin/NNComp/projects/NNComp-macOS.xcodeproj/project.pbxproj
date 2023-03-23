@@ -25,6 +25,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		08C8C7AF29CC2D2000CC3798 /* AudioBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 08C8C7AE29CC2D2000CC3798 /* AudioBuffer.h */; };
+		08C8C7B029CC2D2000CC3798 /* AudioBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 08C8C7AE29CC2D2000CC3798 /* AudioBuffer.h */; };
 		4F03A58C20A4621100EBDFFB /* IGraphicsNanoVG.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F03A55020A4621000EBDFFB /* IGraphicsNanoVG.h */; };
 		4F03A5AA20A4621100EBDFFB /* IGraphicsLiveEdit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F03A55620A4621000EBDFFB /* IGraphicsLiveEdit.h */; };
 		4F03A5AB20A4621100EBDFFB /* IGraphics_include_in_plug_hdr.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F03A55720A4621000EBDFFB /* IGraphics_include_in_plug_hdr.h */; };
@@ -450,6 +452,7 @@
 		08AF181328900E4B002735FC /* dsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dsp.h; sourceTree = "<group>"; };
 		08B5467A29AA39DD00A3D477 /* CustomControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomControls.h; sourceTree = "<group>"; };
 		08BBD70B29BBE37E0064E213 /* WeightSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeightSender.h; sourceTree = "<group>"; };
+		08C8C7AE29CC2D2000CC3798 /* AudioBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioBuffer.h; sourceTree = "<group>"; };
 		4F03A55020A4621000EBDFFB /* IGraphicsNanoVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGraphicsNanoVG.h; sourceTree = "<group>"; };
 		4F03A55420A4621000EBDFFB /* IGraphicsNanoVG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsNanoVG.cpp; sourceTree = "<group>"; };
 		4F03A55620A4621000EBDFFB /* IGraphicsLiveEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphicsLiveEdit.h; path = ../../iPlug2/IGraphics/IGraphicsLiveEdit.h; sourceTree = "<group>"; };
@@ -890,6 +893,7 @@
 		089C166AFE841209C02AAC07 /* IPlugExample */ = {
 			isa = PBXGroup;
 			children = (
+				08C8C7AE29CC2D2000CC3798 /* AudioBuffer.h */,
 				087B68A629AE1ABB00109416 /* NetworkControl.h */,
 				08BBD70B29BBE37E0064E213 /* WeightSender.h */,
 				08B5467A29AA39DD00A3D477 /* CustomControls.h */,
@@ -1698,6 +1702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F78BE1222E73DD900AD537E /* AUv3Framework.h in Headers */,
+				08C8C7B029CC2D2000CC3798 /* AudioBuffer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1719,6 +1724,7 @@
 				4F03A5D420A4621100EBDFFB /* IGraphicsUtilities.h in Headers */,
 				4F03A5AA20A4621100EBDFFB /* IGraphicsLiveEdit.h in Headers */,
 				4F6369EA20A466470022C370 /* IControl.h in Headers */,
+				08C8C7AF29CC2D2000CC3798 /* AudioBuffer.h in Headers */,
 				4F63696520A463090022C370 /* IVKeyboardControl.h in Headers */,
 				4F03A5D520A4621100EBDFFB /* IGraphicsConstants.h in Headers */,
 				4FF3205820B2BFAB00269268 /* IPlugPaths.h in Headers */,
